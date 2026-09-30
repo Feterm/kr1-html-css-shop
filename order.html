@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Контакты магазина KeyForge: телефон, e-mail, адрес, форма обратной связи и режим работы.">
-  <title>Контакты — KeyForge</title>
+  <meta name="description" content="Форма оформления заявки на механическую клавиатуру KeyForge.">
+  <title>Оформление заявки — KeyForge</title>
   <link rel="stylesheet" href="css/style.css">
   <script src="js/main.js" defer></script>
 </head>
@@ -18,8 +18,8 @@
           <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="product.html">Товар</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="order.html">Заявка</a></li>
-          <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" href="contacts.html" aria-current="page">Контакты</a></li>
+          <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" href="order.html" aria-current="page">Заявка</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
         </ul>
         <ul class="site-nav__list site-nav__list--anchors">
           <li class="site-nav__item"><a class="site-nav__link" href="index.html#advantages">Преимущества</a></li>
@@ -36,44 +36,35 @@
     <nav class="breadcrumbs" aria-label="Хлебные крошки">
       <ol class="breadcrumbs__list">
         <li class="breadcrumbs__item"><a href="index.html">Главная</a></li>
-        <li class="breadcrumbs__item" aria-current="page">Контакты</li>
+        <li class="breadcrumbs__item" aria-current="page">Заявка</li>
       </ol>
     </nav>
 
-    <section class="section" aria-labelledby="contacts-title">
-      <h1 class="section__title" id="contacts-title">Контакты</h1>
-      <div class="contact-cards">
-        <article class="contact-card"><h2 class="contact-card__title">Телефон</h2><p><a href="tel:+79000000000">+7 (900) 000-00-00</a></p><p class="contact-card__note">Ежедневно с 10:00 до 20:00</p></article>
-        <article class="contact-card"><h2 class="contact-card__title">E-mail</h2><p><a href="mailto:info@keyforge.example">info@keyforge.example</a></p><p class="contact-card__note">Отвечаем в течение суток</p></article>
-        <article class="contact-card"><h2 class="contact-card__title">Адрес</h2><p>г. Москва, учебный проект</p><p class="contact-card__note">Самовывоз по договорённости</p></article>
-      </div>
-    </section>
-
-    <section class="section layout-split" id="feedback" aria-labelledby="feedback-title">
+    <section class="section layout-split" aria-labelledby="order-title">
       <div class="layout-split__main">
-        <h2 class="section__title" id="feedback-title">Обратная связь</h2>
-        <p class="section__lead">Напишите нам — ответим на вопросы о моделях, доставке и гарантии. Для оформления заказа можно сразу перейти на <a href="order.html">страницу заявки</a>.</p>
-      <form class="order-form" id="feedback-form" action="#" method="post" novalidate>
+        <h1 class="section__title" id="order-title">Оформление заявки</h1>
+        <p class="section__lead">Заполните форму — менеджер свяжется с вами, уточнит детали и подтвердит заказ. Поля, отмеченные обязательными, необходимо заполнить.</p>
+      <form class="order-form" id="order-form" action="#" method="post" novalidate>
         <div class="order-form__field">
-          <label class="order-form__label" for="feedback-name">Имя</label>
-          <input class="order-form__input" id="feedback-name" name="name" type="text" placeholder="Введите ваше имя" minlength="2" autocomplete="given-name" required>
+          <label class="order-form__label" for="order-name">Имя</label>
+          <input class="order-form__input" id="order-name" name="name" type="text" placeholder="Введите ваше имя" minlength="2" autocomplete="given-name" required>
         </div>
 
         <div class="order-form__row">
           <div class="order-form__field">
-            <label class="order-form__label" for="feedback-email">E-mail</label>
-            <input class="order-form__input" id="feedback-email" name="email" type="email" placeholder="example@mail.ru" autocomplete="email" required>
+            <label class="order-form__label" for="order-email">E-mail</label>
+            <input class="order-form__input" id="order-email" name="email" type="email" placeholder="example@mail.ru" autocomplete="email" required>
           </div>
           <div class="order-form__field">
-            <label class="order-form__label" for="feedback-phone">Телефон</label>
-            <input class="order-form__input" id="feedback-phone" name="phone" type="tel" inputmode="tel" placeholder="+7 (900) 000-00-00" pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$" aria-describedby="feedback-phone-hint" required>
-            <small class="order-form__hint" id="feedback-phone-hint">Формат: +7 (900) 000-00-00</small>
+            <label class="order-form__label" for="order-phone">Телефон</label>
+            <input class="order-form__input" id="order-phone" name="phone" type="tel" inputmode="tel" placeholder="+7 (900) 000-00-00" pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$" aria-describedby="order-phone-hint" required>
+            <small class="order-form__hint" id="order-phone-hint">Формат: +7 (900) 000-00-00</small>
           </div>
         </div>
 
         <div class="order-form__field">
-          <label class="order-form__label" for="feedback-product">Выбранный товар</label>
-          <select class="order-form__input" id="feedback-product" name="product" required>
+          <label class="order-form__label" for="order-product">Выбранный товар</label>
+          <select class="order-form__input" id="order-product" name="product" required>
             <option value="">Выберите товар</option>
             <option value="Aurora 75">Aurora 75 — 8 990 ₽</option>
             <option value="Forge 60">Forge 60 — 6 490 ₽</option>
@@ -86,13 +77,13 @@
         </div>
 
         <div class="order-form__field">
-          <label class="order-form__label" for="feedback-comment">Комментарий</label>
-          <textarea class="order-form__input" id="feedback-comment" name="comment" rows="4" placeholder="Например: тип переключателей, цвет, удобное время звонка"></textarea>
+          <label class="order-form__label" for="order-comment">Комментарий</label>
+          <textarea class="order-form__input" id="order-comment" name="comment" rows="4" placeholder="Например: тип переключателей, цвет, удобное время звонка"></textarea>
         </div>
 
         <div class="order-form__field order-form__field--checkbox">
-          <input id="feedback-agreement" name="agreement" type="checkbox" required>
-          <label for="feedback-agreement">Я согласен на обработку персональных данных</label>
+          <input id="order-agreement" name="agreement" type="checkbox" required>
+          <label for="order-agreement">Я согласен на обработку персональных данных</label>
         </div>
 
         <p class="order-form__status" role="status" hidden>Спасибо! Заявка отправлена — мы свяжемся с вами в ближайшее время.</p>
@@ -103,16 +94,15 @@
       </form>
 
       </div>
-      <aside class="layout-split__side aside-info" aria-labelledby="hours-title">
-        <h2 class="aside-info__title" id="hours-title">Режим работы</h2>
-        <table class="table table--small">
-          <caption class="table__caption">Часы работы</caption>
-          <thead><tr><th scope="col">День</th><th scope="col">Время</th></tr></thead>
-          <tbody>
-            <tr><td>Пн–Пт</td><td>10:00–20:00</td></tr>
-            <tr><td>Сб–Вс</td><td>11:00–18:00</td></tr>
-          </tbody>
-        </table>
+
+      <aside class="layout-split__side aside-info" aria-labelledby="order-aside-title">
+        <h2 class="aside-info__title" id="order-aside-title">Что дальше?</h2>
+        <ol class="steps">
+          <li class="steps__item">Мы получим вашу заявку.</li>
+          <li class="steps__item">Позвоним или напишем в течение рабочего дня.</li>
+          <li class="steps__item">Согласуем комплектацию и доставку.</li>
+        </ol>
+        <p>Вопросы? Загляните на страницу <a href="contacts.html">контактов</a>.</p>
       </aside>
     </section>
   </main>
