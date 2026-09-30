@@ -3,129 +3,106 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Форма оформления заявки на механическую клавиатуру KeyForge.">
-  <title>Оформление заявки — KeyForge</title>
+  <meta name="description" content="Форма оформления заявки в учебном интернет-магазине.">
+  <title>Оформление заявки — Учебный интернет-магазин</title>
   <link rel="stylesheet" href="css/style.css">
-  <script src="js/main.js" defer></script>
 </head>
-<body id="top">
+<body>
   <header class="site-header">
     <div class="site-header__inner">
-      <a class="site-header__logo" href="index.html">Key<span>Forge</span></a>
+      <a class="site-header__logo" href="index.html">ShopProject</a>
 
       <nav class="site-nav" aria-label="Основная навигация">
         <ul class="site-nav__list">
-          <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="product.html">Товар</a></li>
-          <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" href="order.html" aria-current="page">Заявка</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
-        </ul>
-        <ul class="site-nav__list site-nav__list--anchors">
-          <li class="site-nav__item"><a class="site-nav__link" href="index.html#advantages">Преимущества</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="index.html#popular">Популярные товары</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="index.html#contacts">Контакты в подвале</a></li>
+        <li class="site-nav__item">
+          <a class="site-nav__link" href="index.html">Главная</a>
+        </li>
+        <li class="site-nav__item">
+          <a class="site-nav__link" href="catalog.html">Каталог</a>
+        </li>
+        <li class="site-nav__item">
+          <a class="site-nav__link" href="product.html">Товар</a>
+        </li>
+        <li class="site-nav__item">
+          <a class="site-nav__link site-nav__link--active" href="order.html" aria-current="page">Заявка</a>
+        </li>
+        <li class="site-nav__item">
+          <a class="site-nav__link" href="contacts.html">Контакты</a>
+        </li>
+        <li class="site-nav__item">
+          <a class="site-nav__link" href="index.html#advantages">Преимущества</a>
+        </li>
+        <li class="site-nav__item">
+          <a class="site-nav__link" href="index.html#popular">Популярные товары</a>
+        </li>
+        <li class="site-nav__item">
+          <a class="site-nav__link" href="index.html#contacts">Обратная связь</a>
+        </li>
         </ul>
       </nav>
-
-      <a class="button button--primary button--small site-header__cta" href="order.html">Оставить заявку</a>
     </div>
   </header>
 
-  <main class="main">
+  <main>
     <nav class="breadcrumbs" aria-label="Хлебные крошки">
-      <ol class="breadcrumbs__list">
-        <li class="breadcrumbs__item"><a href="index.html">Главная</a></li>
-        <li class="breadcrumbs__item" aria-current="page">Заявка</li>
-      </ol>
+      <a class="breadcrumbs__link" href="index.html">Главная</a>
+      <span class="breadcrumbs__current">Заявка</span>
     </nav>
 
-    <section class="section layout-split" aria-labelledby="order-title">
-      <div class="layout-split__main">
-        <h1 class="section__title" id="order-title">Оформление заявки</h1>
-        <p class="section__lead">Заполните форму — менеджер свяжется с вами, уточнит детали и подтвердит заказ. Поля, отмеченные обязательными, необходимо заполнить.</p>
-      <form class="order-form" id="order-form" action="#" method="post" novalidate>
-        <div class="order-form__field">
-          <label class="order-form__label" for="order-name">Имя</label>
-          <input class="order-form__input" id="order-name" name="name" type="text" placeholder="Введите ваше имя" minlength="2" autocomplete="given-name" required>
-        </div>
+    <section class="section">
+      <h1 class="section__title">Оформление заявки</h1>
 
-        <div class="order-form__row">
-          <div class="order-form__field">
-            <label class="order-form__label" for="order-email">E-mail</label>
-            <input class="order-form__input" id="order-email" name="email" type="email" placeholder="example@mail.ru" autocomplete="email" required>
-          </div>
-          <div class="order-form__field">
-            <label class="order-form__label" for="order-phone">Телефон</label>
-            <input class="order-form__input" id="order-phone" name="phone" type="tel" inputmode="tel" placeholder="+7 (900) 000-00-00" pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$" aria-describedby="order-phone-hint" required>
-            <small class="order-form__hint" id="order-phone-hint">Формат: +7 (900) 000-00-00</small>
-          </div>
+      <form class="order-form" action="#" method="get">
+        <div class="order-form__field">
+          <label class="order-form__label" for="order-page-name">Имя</label>
+          <input class="order-form__input" id="order-page-name" name="name" type="text" placeholder="Введите ваше имя" minlength="2" autocomplete="given-name" required>
         </div>
 
         <div class="order-form__field">
-          <label class="order-form__label" for="order-product">Выбранный товар</label>
-          <select class="order-form__input" id="order-product" name="product" required>
-            <option value="">Выберите товар</option>
-            <option value="Aurora 75">Aurora 75 — 8 990 ₽</option>
-            <option value="Forge 60">Forge 60 — 6 490 ₽</option>
-            <option value="Titan TKL">Titan TKL — 10 990 ₽</option>
-            <option value="Nova 100">Nova 100 — 7 990 ₽</option>
-            <option value="Pulse 65">Pulse 65 — 7 490 ₽</option>
-            <option value="Zen 96">Zen 96 — 11 990 ₽</option>
-            <option value="consultation">Просто консультация</option>
+          <label class="order-form__label" for="order-page-email">E-mail</label>
+          <input class="order-form__input" id="order-page-email" name="email" type="email" placeholder="example@mail.ru" autocomplete="email" required>
+        </div>
+
+        <div class="order-form__field">
+          <label class="order-form__label" for="order-page-phone">Телефон</label>
+          <input class="order-form__input" id="order-page-phone" name="phone" type="tel" inputmode="tel" placeholder="+7 (900) 000-00-00" pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$" required>
+          <small class="order-form__hint">Формат: +7 (900) 000-00-00</small>
+        </div>
+
+        <div class="order-form__field">
+          <label class="order-form__label" for="order-page-topic">Тема заявки</label>
+          <select class="order-form__select" id="order-page-topic" name="topic" required>
+            <option value="">Выберите тему</option>
+            <option value="product">Заказ товара</option>
+            <option value="consultation">Консультация</option>
+            <option value="delivery">Доставка</option>
           </select>
         </div>
 
         <div class="order-form__field">
-          <label class="order-form__label" for="order-comment">Комментарий</label>
-          <textarea class="order-form__input" id="order-comment" name="comment" rows="4" placeholder="Например: тип переключателей, цвет, удобное время звонка"></textarea>
+          <label class="order-form__label" for="order-page-comment">Комментарий</label>
+          <textarea class="order-form__textarea" id="order-page-comment" name="comment" rows="4" placeholder="Укажите дополнительную информацию"></textarea>
         </div>
 
         <div class="order-form__field order-form__field--checkbox">
-          <input id="order-agreement" name="agreement" type="checkbox" required>
-          <label for="order-agreement">Я согласен на обработку персональных данных</label>
+          <label class="order-form__label">
+            <input id="order-page-agreement" name="agreement" type="checkbox" required>
+            Я согласен на обработку данных
+          </label>
         </div>
-
-        <p class="order-form__status" role="status" hidden>Спасибо! Заявка отправлена — мы свяжемся с вами в ближайшее время.</p>
 
         <div class="order-form__actions">
           <button class="button button--primary" type="submit">Отправить заявку</button>
         </div>
       </form>
-
-      </div>
-
-      <aside class="layout-split__side aside-info" aria-labelledby="order-aside-title">
-        <h2 class="aside-info__title" id="order-aside-title">Что дальше?</h2>
-        <ol class="steps">
-          <li class="steps__item">Мы получим вашу заявку.</li>
-          <li class="steps__item">Позвоним или напишем в течение рабочего дня.</li>
-          <li class="steps__item">Согласуем комплектацию и доставку.</li>
-        </ol>
-        <p>Вопросы? Загляните на страницу <a href="contacts.html">контактов</a>.</p>
-      </aside>
     </section>
   </main>
 
   <footer class="site-footer" id="contacts">
-    <div class="site-footer__inner">
-      <section class="site-footer__col" aria-labelledby="footer-about">
-        <h2 class="site-footer__title" id="footer-about">KeyForge</h2>
-        <p>Учебный интернет-магазин механических клавиатур.</p>
-      </section>
-      <section class="site-footer__col" aria-labelledby="footer-contacts">
-        <h2 class="site-footer__title" id="footer-contacts">Контакты</h2>
-        <p>Телефон: <a href="tel:+79000000000">+7 (900) 000-00-00</a><br>
-        E-mail: <a href="mailto:info@keyforge.example">info@keyforge.example</a></p>
-      </section>
-      <section class="site-footer__col" aria-labelledby="footer-links">
-        <h2 class="site-footer__title" id="footer-links">Разделы</h2>
-        <p><a href="catalog.html">Каталог</a> · <a href="order.html">Заявка</a> · <a href="contacts.html">Контакты</a></p>
-      </section>
-    </div>
-    <p class="site-footer__copy">&copy; 2026 KeyForge. Учебный проект. Дисциплина: Фронтенд и бэкенд разработка</p>
+    <p>&copy; 2026 Учебный проект. Все права защищены.</p>
+    <p>Дисциплина: Фронтенд и бэкенд разработка</p>
   </footer>
 
-  <a class="to-top" href="#top" aria-label="Наверх">&uarr;</a>
+  <a class="scroll-top button button--primary" href="#">Наверх</a>
 </body>
 </html>
