@@ -3,139 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Контакты магазина KeyForge: телефон, e-mail, адрес, форма обратной связи и режим работы.">
-  <title>Контакты — KeyForge</title>
+  <meta name="description" content="Контактная информация учебного интернет-магазина.">
+  <title>Контакты — Учебный интернет-магазин</title>
   <link rel="stylesheet" href="css/style.css">
-  <script src="js/main.js" defer></script>
 </head>
-<body id="top">
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a class="site-header__logo" href="index.html">Key<span>Forge</span></a>
+<body>
+  <header>
+    <div class="site-header">
+      <a class="site-logo" href="index.html">ShopProject</a>
 
       <nav class="site-nav" aria-label="Основная навигация">
         <ul class="site-nav__list">
-          <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="product.html">Товар</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="order.html">Заявка</a></li>
-          <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" href="contacts.html" aria-current="page">Контакты</a></li>
-        </ul>
-        <ul class="site-nav__list site-nav__list--anchors">
-          <li class="site-nav__item"><a class="site-nav__link" href="index.html#advantages">Преимущества</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="index.html#popular">Популярные товары</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="index.html#contacts">Контакты в подвале</a></li>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="catalog.html">Каталог</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
+          <li><a href="index.html#advantages">Преимущества</a></li>
+          <li><a href="index.html#popular">Популярные товары</a></li>
+          <li><a href="index.html#contacts">Обратная связь</a></li>
         </ul>
       </nav>
-
-      <a class="button button--primary button--small site-header__cta" href="order.html">Оставить заявку</a>
     </div>
   </header>
 
-  <main class="main">
+  <main>
     <nav class="breadcrumbs" aria-label="Хлебные крошки">
-      <ol class="breadcrumbs__list">
-        <li class="breadcrumbs__item"><a href="index.html">Главная</a></li>
-        <li class="breadcrumbs__item" aria-current="page">Контакты</li>
-      </ol>
+      <a href="index.html">Главная</a>
+      <span>Контакты</span>
     </nav>
 
-    <section class="section" aria-labelledby="contacts-title">
-      <h1 class="section__title" id="contacts-title">Контакты</h1>
-      <div class="contact-cards">
-        <article class="contact-card"><h2 class="contact-card__title">Телефон</h2><p><a href="tel:+79000000000">+7 (900) 000-00-00</a></p><p class="contact-card__note">Ежедневно с 10:00 до 20:00</p></article>
-        <article class="contact-card"><h2 class="contact-card__title">E-mail</h2><p><a href="mailto:info@keyforge.example">info@keyforge.example</a></p><p class="contact-card__note">Отвечаем в течение суток</p></article>
-        <article class="contact-card"><h2 class="contact-card__title">Адрес</h2><p>г. Москва, учебный проект</p><p class="contact-card__note">Самовывоз по договорённости</p></article>
-      </div>
+    <section class="section">
+      <h1>Контакты</h1>
+      <p>
+        Здесь размещается контактная информация учебного интернет-магазина.
+      </p>
+
+      <ul>
+        <li>Телефон: +7 (900) 000-00-00</li>
+        <li>E-mail: info@example.com</li>
+        <li>Адрес: г. Москва, учебный проект</li>
+      </ul>
     </section>
 
-    <section class="section layout-split" id="feedback" aria-labelledby="feedback-title">
-      <div class="layout-split__main">
-        <h2 class="section__title" id="feedback-title">Обратная связь</h2>
-        <p class="section__lead">Напишите нам — ответим на вопросы о моделях, доставке и гарантии. Для оформления заказа можно сразу перейти на <a href="order.html">страницу заявки</a>.</p>
-      <form class="order-form" id="feedback-form" action="#" method="post" novalidate>
-        <div class="order-form__field">
-          <label class="order-form__label" for="feedback-name">Имя</label>
-          <input class="order-form__input" id="feedback-name" name="name" type="text" placeholder="Введите ваше имя" minlength="2" autocomplete="given-name" required>
-        </div>
-
-        <div class="order-form__row">
-          <div class="order-form__field">
-            <label class="order-form__label" for="feedback-email">E-mail</label>
-            <input class="order-form__input" id="feedback-email" name="email" type="email" placeholder="example@mail.ru" autocomplete="email" required>
-          </div>
-          <div class="order-form__field">
-            <label class="order-form__label" for="feedback-phone">Телефон</label>
-            <input class="order-form__input" id="feedback-phone" name="phone" type="tel" inputmode="tel" placeholder="+7 (900) 000-00-00" pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$" aria-describedby="feedback-phone-hint" required>
-            <small class="order-form__hint" id="feedback-phone-hint">Формат: +7 (900) 000-00-00</small>
-          </div>
-        </div>
-
-        <div class="order-form__field">
-          <label class="order-form__label" for="feedback-product">Выбранный товар</label>
-          <select class="order-form__input" id="feedback-product" name="product" required>
-            <option value="">Выберите товар</option>
-            <option value="Aurora 75">Aurora 75 — 8 990 ₽</option>
-            <option value="Forge 60">Forge 60 — 6 490 ₽</option>
-            <option value="Titan TKL">Titan TKL — 10 990 ₽</option>
-            <option value="Nova 100">Nova 100 — 7 990 ₽</option>
-            <option value="Pulse 65">Pulse 65 — 7 490 ₽</option>
-            <option value="Zen 96">Zen 96 — 11 990 ₽</option>
-            <option value="consultation">Просто консультация</option>
-          </select>
-        </div>
-
-        <div class="order-form__field">
-          <label class="order-form__label" for="feedback-comment">Комментарий</label>
-          <textarea class="order-form__input" id="feedback-comment" name="comment" rows="4" placeholder="Например: тип переключателей, цвет, удобное время звонка"></textarea>
-        </div>
-
-        <div class="order-form__field order-form__field--checkbox">
-          <input id="feedback-agreement" name="agreement" type="checkbox" required>
-          <label for="feedback-agreement">Я согласен на обработку персональных данных</label>
-        </div>
-
-        <p class="order-form__status" role="status" hidden>Спасибо! Заявка отправлена — мы свяжемся с вами в ближайшее время.</p>
-
-        <div class="order-form__actions">
-          <button class="button button--primary" type="submit">Отправить заявку</button>
-        </div>
-      </form>
-
-      </div>
-      <aside class="layout-split__side aside-info" aria-labelledby="hours-title">
-        <h2 class="aside-info__title" id="hours-title">Режим работы</h2>
-        <table class="table table--small">
-          <caption class="table__caption">Часы работы</caption>
-          <thead><tr><th scope="col">День</th><th scope="col">Время</th></tr></thead>
-          <tbody>
-            <tr><td>Пн–Пт</td><td>10:00–20:00</td></tr>
-            <tr><td>Сб–Вс</td><td>11:00–18:00</td></tr>
-          </tbody>
-        </table>
-      </aside>
+    <section class="section" id="feedback">
+      <h2>Обратная связь</h2>
+      <p>
+        Для отправки заявки используйте форму в модальном окне на главной странице.
+      </p>
+      <a class="button" href="index.html#contacts">Перейти к форме</a>
     </section>
   </main>
 
-  <footer class="site-footer" id="contacts">
-    <div class="site-footer__inner">
-      <section class="site-footer__col" aria-labelledby="footer-about">
-        <h2 class="site-footer__title" id="footer-about">KeyForge</h2>
-        <p>Учебный интернет-магазин механических клавиатур.</p>
-      </section>
-      <section class="site-footer__col" aria-labelledby="footer-contacts">
-        <h2 class="site-footer__title" id="footer-contacts">Контакты</h2>
-        <p>Телефон: <a href="tel:+79000000000">+7 (900) 000-00-00</a><br>
-        E-mail: <a href="mailto:info@keyforge.example">info@keyforge.example</a></p>
-      </section>
-      <section class="site-footer__col" aria-labelledby="footer-links">
-        <h2 class="site-footer__title" id="footer-links">Разделы</h2>
-        <p><a href="catalog.html">Каталог</a> · <a href="order.html">Заявка</a> · <a href="contacts.html">Контакты</a></p>
-      </section>
-    </div>
-    <p class="site-footer__copy">&copy; 2026 KeyForge. Учебный проект. Дисциплина: Фронтенд и бэкенд разработка</p>
+  <footer>
+    <p>&copy; 2026 Учебный проект. Все права защищены.</p>
+    <p>Дисциплина: Фронтенд и бэкенд разработка</p>
   </footer>
-
-  <a class="to-top" href="#top" aria-label="Наверх">&uarr;</a>
 </body>
 </html>

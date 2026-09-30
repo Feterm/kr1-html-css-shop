@@ -1,71 +1,74 @@
-// Минимальный JavaScript: открытие/закрытие модального окна и
-// сообщение об отправке формы. Вся вёрстка и оформление — в HTML/CSS.
+// Получаем модальное окно по id.
+const orderDialog = document.getElementById('order-dialog');
 
-const dialog = document.getElementById('order-dialog');
+// Получаем все кнопки заказа в карточках товаров.
+const orderButtons = document.querySelectorAll('.product-card__button');
 
-// Открываем модальное окно по кнопкам «Заказать» / «Быстрая заявка».
-document.querySelectorAll('[data-product]').forEach((button) => {
+// Получаем кнопку закрытия модального окна.
+const closeDialogButton = document.getElementById('close-order-dialog');
+
+// Получаем скрытое поле, в которое будет записан выбранный товар.
+const selectedProductInput = document.getElementById('selected-product');
+
+// Перебираем все кнопки «Заказать».
+orderButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    const select = dialog.querySelector('select[name="product"]');
-    select.value = button.dataset.product;
-    dialog.showModal();
+    // Получаем название товара из data-атрибута.
+    const productName = button.dataset.product;
+
+    // Записываем название товара в скрытое поле формы.
+    selectedProductInput.value = productName;
+
+    // Открываем модальное окно.
+    orderDialog.showModal();
   });
 });
 
-if (dialog) {
-  // Кнопки закрытия.
-  dialog.querySelectorAll('[data-dialog-close]').forEach((button) => {
-    button.addEventListener('click', () => dialog.close());
-  });
+// Закрываем модальное окно по кнопке «Закрыть».
+closeDialogButton.addEventListener('click', () => {
+  orderDialog.close();
+});
 
-  // Клик по затемнённому фону тоже закрывает окно.
-  dialog.addEventListener('click', (event) => {
-    if (event.target === dialog) {
-      dialog.close();
+// Получаем форму заявки.
+const orderForm = document.getElementById('order-form');
+
+// Получаем сообщение об успешной отправке.
+const successMessage = document.getElementById('success-message');
+
+// Обрабатываем отправку формы.
+orderForm.addEventListener('submit', (event) => {
+  // Отменяем стандартную отправку формы,
+  // потому что backend пока не подключён.
+  event.preventDefault();
+
+  // Сбрасываем предыдущие признаки ошибок.
+  const formElements = Array.from(orderForm.elements);
+
+  formElements.forEach((element) => {
+    if (element.willValidate) {
+      element.removeAttribute('aria-invalid');
     }
   });
-}
 
-// На странице заявки подставляем товар из адреса: order.html?product=Aurora%2075
-const productParam = new URLSearchParams(window.location.search).get('product');
-const pageSelect = document.querySelector('main select[name="product"]');
-if (productParam && pageSelect) {
-  pageSelect.value = productParam;
-}
-
-// Обработка отправки всех форм (backend пока не подключён).
-document.querySelectorAll('.order-form').forEach((form) => {
-  const status = form.querySelector('.order-form__status');
-
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    status.hidden = true;
-
-    let valid = true;
-    Array.from(form.elements).forEach((element) => {
-      if (!element.willValidate) return;
-      if (element.checkValidity()) {
-        element.removeAttribute('aria-invalid');
-      } else {
+  // Проверяем встроенные HTML-ограничения формы.
+  if (!orderForm.checkValidity()) {
+    formElements.forEach((element) => {
+      if (element.willValidate && !element.checkValidity()) {
         element.setAttribute('aria-invalid', 'true');
-        valid = false;
       }
     });
 
-    if (!valid) {
-      form.reportValidity();
-      return;
-    }
+    // Показываем стандартные сообщения браузера.
+    orderForm.reportValidity();
+    return;
+  }
 
-    form.reset();
-    status.hidden = false;
+  // Показываем сообщение об успешной отправке.
+  successMessage.hidden = false;
 
-    // В модальном окне даём прочитать сообщение и закрываем окно.
-    if (dialog && dialog.contains(form)) {
-      setTimeout(() => {
-        dialog.close();
-        status.hidden = true;
-      }, 1800);
-    }
-  });
+  // Очищаем форму.
+  orderForm.reset();
+
+  // Закрываем модальное окно.
+  orderDialog.close();
 });
