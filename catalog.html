@@ -3,124 +3,258 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Каталог товаров учебного интернет-магазина.">
-  <title>Каталог товаров — Учебный интернет-магазин</title>
+  <meta name="description" content="Каталог механических клавиатур KeyForge: размеры 60%, 65%, 75%, TKL и полноразмерные, цены и фильтры.">
+  <title>Каталог клавиатур — KeyForge</title>
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
 </head>
-<body>
+<body id="top">
   <header class="site-header">
     <div class="site-header__inner">
-      <a class="site-header__logo" href="index.html">ShopProject</a>
+      <a class="site-header__logo" href="index.html">Key<span>Forge</span></a>
 
       <nav class="site-nav" aria-label="Основная навигация">
         <ul class="site-nav__list">
-        <li class="site-nav__item">
-          <a class="site-nav__link" href="index.html">Главная</a>
-        </li>
-        <li class="site-nav__item">
-          <a class="site-nav__link site-nav__link--active" href="catalog.html" aria-current="page">Каталог</a>
-        </li>
-        <li class="site-nav__item">
-          <a class="site-nav__link" href="contacts.html">Контакты</a>
-        </li>
-        <li class="site-nav__item">
-          <a class="site-nav__link" href="index.html#advantages">Преимущества</a>
-        </li>
-        <li class="site-nav__item">
-          <a class="site-nav__link" href="index.html#popular">Популярные товары</a>
-        </li>
-        <li class="site-nav__item">
-          <a class="site-nav__link" href="index.html#contacts">Обратная связь</a>
-        </li>
+          <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
+          <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" href="catalog.html" aria-current="page">Каталог</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="product.html">Товар</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="order.html">Заявка</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
+        </ul>
+        <ul class="site-nav__list site-nav__list--anchors">
+          <li class="site-nav__item"><a class="site-nav__link" href="index.html#advantages">Преимущества</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="index.html#popular">Популярные товары</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="index.html#contacts">Контакты в подвале</a></li>
         </ul>
       </nav>
+
+      <a class="button button--primary button--small site-header__cta" href="order.html">Оставить заявку</a>
     </div>
   </header>
 
   <main class="main">
     <nav class="breadcrumbs" aria-label="Хлебные крошки">
-      <a class="breadcrumbs__link" href="index.html">Главная</a>
-      <span class="breadcrumbs__current">Каталог</span>
+      <ol class="breadcrumbs__list">
+        <li class="breadcrumbs__item"><a href="index.html">Главная</a></li>
+        <li class="breadcrumbs__item" aria-current="page">Каталог</li>
+      </ol>
     </nav>
 
-    <section class="section">
-      <h1 class="section__title">Каталог товаров</h1>
-      <p>
-        На этой странице представлен учебный каталог товаров. Слева расположен
-        блок фильтров, справа — список товаров.
-      </p>
+    <section class="section" aria-labelledby="catalog-title">
+      <h1 class="section__title" id="catalog-title">Каталог клавиатур</h1>
+      <p class="section__lead">Шесть моделей разных размеров. Фильтры ниже — статический макет: логику подключим на следующих работах.</p>
     </section>
 
-    <section class="catalog-layout">
-      <aside class="catalog-filters">
-        <h2 class="catalog-filters__title">Фильтры</h2>
-
+    <div class="catalog-layout">
+      <aside class="catalog-filters" aria-labelledby="filters-title">
+        <h2 class="catalog-filters__title" id="filters-title">Фильтры</h2>
         <form class="catalog-filters__form" action="#" method="get">
           <fieldset class="catalog-filters__group">
-            <legend class="catalog-filters__legend">Категория</legend>
-
-            <label class="catalog-filters__label">
-              <input class="catalog-filters__checkbox" type="checkbox" name="category" value="all">
-              Все товары
-            </label>
-
-            <label class="catalog-filters__label">
-              <input class="catalog-filters__checkbox" type="checkbox" name="category" value="popular">
-              Популярные
-            </label>
-
-            <label class="catalog-filters__label">
-              <input class="catalog-filters__checkbox" type="checkbox" name="category" value="new">
-              Новинки
-            </label>
+            <legend class="catalog-filters__legend">Размер</legend>
+            <ul class="catalog-filters__list">
+          <li class="catalog-filters__item"><label><input type="checkbox" name="size" value="60%"> 60%</label></li>
+          <li class="catalog-filters__item"><label><input type="checkbox" name="size" value="65%"> 65%</label></li>
+          <li class="catalog-filters__item"><label><input type="checkbox" name="size" value="75%"> 75%</label></li>
+          <li class="catalog-filters__item"><label><input type="checkbox" name="size" value="TKL"> TKL</label></li>
+          <li class="catalog-filters__item"><label><input type="checkbox" name="size" value="Full-size"> Full-size</label></li>
+            </ul>
           </fieldset>
 
           <fieldset class="catalog-filters__group">
             <legend class="catalog-filters__legend">Цена</legend>
-
-            <label class="catalog-filters__label" for="price-from">От</label>
-            <input class="catalog-filters__input" id="price-from" name="price-from" type="number" min="0" placeholder="0">
-
-            <label class="catalog-filters__label" for="price-to">До</label>
-            <input class="catalog-filters__input" id="price-to" name="price-to" type="number" min="0" placeholder="5000">
+            <ul class="catalog-filters__list">
+              <li class="catalog-filters__item"><label><input type="radio" name="price" value="any" checked> Любая</label></li>
+              <li class="catalog-filters__item"><label><input type="radio" name="price" value="low"> до 8 000 ₽</label></li>
+              <li class="catalog-filters__item"><label><input type="radio" name="price" value="high"> от 8 000 ₽</label></li>
+            </ul>
           </fieldset>
 
-          <button class="button button--primary" type="submit">Применить</button>
+          <div class="catalog-filters__group">
+            <label class="catalog-filters__legend" for="sort">Сортировка</label>
+            <select class="catalog-filters__select" id="sort" name="sort">
+              <option>По популярности</option>
+              <option>Сначала дешёвые</option>
+              <option>Сначала дорогие</option>
+            </select>
+          </div>
+
+          <div class="catalog-filters__actions">
+            <button class="button button--primary" type="button">Применить</button>
+            <button class="button button--secondary" type="reset">Сбросить</button>
+          </div>
         </form>
       </aside>
 
-      <section class="catalog-products">
-        <h2 class="catalog-products__title">Список товаров</h2>
+      <section class="catalog-products" aria-label="Список товаров">
+        <div class="products-grid products-grid--catalog">
+      <article class="product-card product-card--hit">
+        <span class="badge badge--hit product-card__badge">Хит</span>
+        <img class="product-card__image" src="images/aurora-75.svg" alt="Клавиатура Aurora 75" width="640" height="400" loading="lazy">
+        <div class="product-card__body">
+          <p class="product-card__category">75%</p>
+          <h3 class="product-card__title">Aurora 75</h3>
+          <p class="product-card__description">Беспроводная клавиатура 75% с алюминиевым корпусом и горячей заменой переключателей.</p>
+          <p class="product-card__price">8 990 ₽</p>
+        </div>
+        <div class="product-card__actions">
+          <a class="button button--primary product-card__link" href="product.html">Подробнее</a>
+          <button class="button button--secondary product-card__button" type="button" data-product="Aurora 75">Заказать</button>
+        </div>
+      </article>
 
-        <div class="products-grid">
-          <article class="product-card product-card--featured">
-            <h3 class="product-card__title">Товар 1</h3>
-            <p class="product-card__description">Краткое описание учебного товара.</p>
-            <p class="product-card__price">Цена: 1000 руб.</p>
-            <a class="button button--primary product-card__button" href="index.html#popular">Подробнее</a>
-          </article>
+      <article class="product-card product-card--new">
+        <span class="badge badge--new product-card__badge">Новинка</span>
+        <img class="product-card__image" src="images/forge-60.svg" alt="Клавиатура Forge 60" width="640" height="400" loading="lazy">
+        <div class="product-card__body">
+          <p class="product-card__category">60%</p>
+          <h3 class="product-card__title">Forge 60</h3>
+          <p class="product-card__description">Компактная 60% клавиатура для тех, кто ценит свободное место на столе.</p>
+          <p class="product-card__price">6 490 ₽</p>
+        </div>
+        <div class="product-card__actions">
+          <a class="button button--primary product-card__link" href="product.html">Подробнее</a>
+          <button class="button button--secondary product-card__button" type="button" data-product="Forge 60">Заказать</button>
+        </div>
+      </article>
 
-          <article class="product-card">
-            <h3 class="product-card__title">Товар 2</h3>
-            <p class="product-card__description">Краткое описание учебного товара.</p>
-            <p class="product-card__price">Цена: 1500 руб.</p>
-            <a class="button button--primary product-card__button" href="index.html#popular">Подробнее</a>
-          </article>
+      <article class="product-card">
+        <img class="product-card__image" src="images/titan-tkl.svg" alt="Клавиатура Titan TKL" width="640" height="400" loading="lazy">
+        <div class="product-card__body">
+          <p class="product-card__category">TKL</p>
+          <h3 class="product-card__title">Titan TKL</h3>
+          <p class="product-card__description">Клавиатура без цифрового блока с прочным металлическим основанием.</p>
+          <p class="product-card__price">10 990 ₽</p>
+        </div>
+        <div class="product-card__actions">
+          <a class="button button--primary product-card__link" href="product.html">Подробнее</a>
+          <button class="button button--secondary product-card__button" type="button" data-product="Titan TKL">Заказать</button>
+        </div>
+      </article>
 
-          <article class="product-card">
-            <h3 class="product-card__title">Товар 3</h3>
-            <p class="product-card__description">Краткое описание учебного товара.</p>
-            <p class="product-card__price">Цена: 2000 руб.</p>
-            <a class="button button--primary product-card__button" href="index.html#popular">Подробнее</a>
-          </article>
+      <article class="product-card product-card--sale">
+        <span class="badge badge--sale product-card__badge">Скидка</span>
+        <img class="product-card__image" src="images/nova-100.svg" alt="Клавиатура Nova 100" width="640" height="400" loading="lazy">
+        <div class="product-card__body">
+          <p class="product-card__category">Full-size</p>
+          <h3 class="product-card__title">Nova 100</h3>
+          <p class="product-card__description">Полноразмерная модель с цифровым блоком и мягкой RGB-подсветкой.</p>
+          <p class="product-card__price"><s class="product-card__old-price">9 490 ₽</s> 7 990 ₽</p>
+        </div>
+        <div class="product-card__actions">
+          <a class="button button--primary product-card__link" href="product.html">Подробнее</a>
+          <button class="button button--secondary product-card__button" type="button" data-product="Nova 100">Заказать</button>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <img class="product-card__image" src="images/pulse-65.svg" alt="Клавиатура Pulse 65" width="640" height="400" loading="lazy">
+        <div class="product-card__body">
+          <p class="product-card__category">65%</p>
+          <h3 class="product-card__title">Pulse 65</h3>
+          <p class="product-card__description">Модель 65% со стрелками: удобный баланс размера и функциональности.</p>
+          <p class="product-card__price">7 490 ₽</p>
+        </div>
+        <div class="product-card__actions">
+          <a class="button button--primary product-card__link" href="product.html">Подробнее</a>
+          <button class="button button--secondary product-card__button" type="button" data-product="Pulse 65">Заказать</button>
+        </div>
+      </article>
+
+      <article class="product-card product-card--new">
+        <span class="badge badge--new product-card__badge">Новинка</span>
+        <img class="product-card__image" src="images/zen-96.svg" alt="Клавиатура Zen 96" width="640" height="400" loading="lazy">
+        <div class="product-card__body">
+          <p class="product-card__category">Full-size</p>
+          <h3 class="product-card__title">Zen 96</h3>
+          <p class="product-card__description">Плотная раскладка 96% с тихими переключателями для офиса.</p>
+          <p class="product-card__price">11 990 ₽</p>
+        </div>
+        <div class="product-card__actions">
+          <a class="button button--primary product-card__link" href="product.html">Подробнее</a>
+          <button class="button button--secondary product-card__button" type="button" data-product="Zen 96">Заказать</button>
+        </div>
+      </article>
         </div>
       </section>
-    </section>
+    </div>
   </main>
 
   <footer class="site-footer" id="contacts">
-    <p class="site-footer__text">&copy; 2026 Учебный проект. Все права защищены.</p>
-    <p class="site-footer__text">Дисциплина: Фронтенд и бэкенд разработка</p>
+    <div class="site-footer__inner">
+      <section class="site-footer__col" aria-labelledby="footer-about">
+        <h2 class="site-footer__title" id="footer-about">KeyForge</h2>
+        <p>Учебный интернет-магазин механических клавиатур.</p>
+      </section>
+      <section class="site-footer__col" aria-labelledby="footer-contacts">
+        <h2 class="site-footer__title" id="footer-contacts">Контакты</h2>
+        <p>Телефон: <a href="tel:+79000000000">+7 (900) 000-00-00</a><br>
+        E-mail: <a href="mailto:info@keyforge.example">info@keyforge.example</a></p>
+      </section>
+      <section class="site-footer__col" aria-labelledby="footer-links">
+        <h2 class="site-footer__title" id="footer-links">Разделы</h2>
+        <p><a href="catalog.html">Каталог</a> · <a href="order.html">Заявка</a> · <a href="contacts.html">Контакты</a></p>
+      </section>
+    </div>
+    <p class="site-footer__copy">&copy; 2026 KeyForge. Учебный проект. Дисциплина: Фронтенд и бэкенд разработка</p>
   </footer>
+
+  <a class="to-top" href="#top" aria-label="Наверх">&uarr;</a>
+
+  <dialog class="order-dialog" id="order-dialog" aria-labelledby="order-dialog-title">
+    <div class="order-dialog__header">
+      <h2 class="order-dialog__title" id="order-dialog-title">Быстрая заявка</h2>
+      <button class="order-dialog__close" type="button" data-dialog-close aria-label="Закрыть окно">&times;</button>
+    </div>
+    <form class="order-form" id="modal-form" action="#" method="post" novalidate>
+        <div class="order-form__field">
+          <label class="order-form__label" for="modal-name">Имя</label>
+          <input class="order-form__input" id="modal-name" name="name" type="text" placeholder="Введите ваше имя" minlength="2" autocomplete="given-name" required>
+        </div>
+
+        <div class="order-form__row">
+          <div class="order-form__field">
+            <label class="order-form__label" for="modal-email">E-mail</label>
+            <input class="order-form__input" id="modal-email" name="email" type="email" placeholder="example@mail.ru" autocomplete="email" required>
+          </div>
+          <div class="order-form__field">
+            <label class="order-form__label" for="modal-phone">Телефон</label>
+            <input class="order-form__input" id="modal-phone" name="phone" type="tel" inputmode="tel" placeholder="+7 (900) 000-00-00" pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$" aria-describedby="modal-phone-hint" required>
+            <small class="order-form__hint" id="modal-phone-hint">Формат: +7 (900) 000-00-00</small>
+          </div>
+        </div>
+
+        <div class="order-form__field">
+          <label class="order-form__label" for="modal-product">Выбранный товар</label>
+          <select class="order-form__input" id="modal-product" name="product" required>
+            <option value="">Выберите товар</option>
+            <option value="Aurora 75">Aurora 75 — 8 990 ₽</option>
+            <option value="Forge 60">Forge 60 — 6 490 ₽</option>
+            <option value="Titan TKL">Titan TKL — 10 990 ₽</option>
+            <option value="Nova 100">Nova 100 — 7 990 ₽</option>
+            <option value="Pulse 65">Pulse 65 — 7 490 ₽</option>
+            <option value="Zen 96">Zen 96 — 11 990 ₽</option>
+            <option value="consultation">Просто консультация</option>
+          </select>
+        </div>
+
+        <div class="order-form__field">
+          <label class="order-form__label" for="modal-comment">Комментарий</label>
+          <textarea class="order-form__input" id="modal-comment" name="comment" rows="4" placeholder="Например: тип переключателей, цвет, удобное время звонка"></textarea>
+        </div>
+
+        <div class="order-form__field order-form__field--checkbox">
+          <input id="modal-agreement" name="agreement" type="checkbox" required>
+          <label for="modal-agreement">Я согласен на обработку персональных данных</label>
+        </div>
+
+        <p class="order-form__status" role="status" hidden>Спасибо! Заявка отправлена — мы свяжемся с вами в ближайшее время.</p>
+
+        <div class="order-form__actions">
+        <button class="button button--secondary" type="button" data-dialog-close>Закрыть</button>
+          <button class="button button--primary" type="submit">Отправить заявку</button>
+        </div>
+      </form>
+  </dialog>
+
 </body>
 </html>
