@@ -313,6 +313,9 @@ a:focus-visible {
 
 .catalog-filters {
   grid-area: filters;
+  position: sticky;
+  top: 96px; /* высота липкой шапки site-header, чтобы фильтры не прятались под ней */
+  align-self: start;
   padding: var(--space-md);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -519,4 +522,71 @@ a:focus-visible {
   right: var(--space-lg);
   bottom: var(--space-lg);
   z-index: 90;
+}
+
+
+/* ===============================
+   6. Самостоятельные доработки
+   =============================== */
+
+/* Отзывы (главная страница) */
+
+.reviews-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.review-card {
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+.review-card__text {
+  margin: 0 0 var(--space-sm);
+  color: var(--color-text);
+}
+
+.review-card__author {
+  margin: 0;
+  font-weight: 700;
+  color: var(--color-muted);
+}
+
+
+/* Часто задаваемые вопросы (страница контактов) */
+
+.faq {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.faq__item {
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+.faq__question {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.faq__question:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.faq__item[open] .faq__question {
+  color: var(--color-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.faq__answer {
+  margin: 0;
+  color: var(--color-muted);
 }
