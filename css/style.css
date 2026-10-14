@@ -265,6 +265,14 @@ a:focus-visible {
   border-color: var(--color-danger);
 }
 
+.product-card--new {
+  border-color: var(--color-success);
+}
+
+.product-card__badge--new {
+  background-color: var(--color-success);
+}
+
 .product-card__title {
   margin: 0;
   color: var(--color-text);
