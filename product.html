@@ -50,7 +50,10 @@
     </nav>
 
     <article class="product-details">
-      <img class="product-details__image" src="images/product-1.svg" alt="Товар 1" width="400" height="300">
+      <figure class="product-details__figure">
+        <img class="product-details__image" src="images/product-1.svg" alt="Товар 1: синий прямоугольник с надписью на светлом фоне" width="400" height="300" decoding="async">
+        <figcaption class="product-details__caption">Учебное изображение товара 1</figcaption>
+      </figure>
 
       <div class="product-details__info">
         <h1 class="product-details__title">Товар 1</h1>
@@ -67,8 +70,8 @@
         <caption>Характеристики товара</caption>
         <thead>
           <tr>
-            <th>Параметр</th>
-            <th>Значение</th>
+            <th scope="col">Параметр</th>
+            <th scope="col">Значение</th>
           </tr>
         </thead>
         <tbody>
@@ -83,6 +86,30 @@
           <tr>
             <td>Наличие</td>
             <td>В наличии</td>
+          </tr>
+          <tr>
+            <td>Производитель</td>
+            <td>Учебная мастерская</td>
+          </tr>
+          <tr>
+            <td>Страна производства</td>
+            <td>Россия</td>
+          </tr>
+          <tr>
+            <td>Гарантия</td>
+            <td>12 месяцев</td>
+          </tr>
+          <tr>
+            <td>Вес</td>
+            <td>1,2 кг</td>
+          </tr>
+          <tr>
+            <td>Габариты</td>
+            <td>300 × 200 × 50 мм</td>
+          </tr>
+          <tr>
+            <td>Срок доставки</td>
+            <td>2–5 рабочих дней</td>
           </tr>
         </tbody>
       </table>
