@@ -314,6 +314,13 @@ a:focus-visible {
   color: var(--color-danger);
 }
 
+.product-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: auto;
+}
+
 .product-card__button {
   margin-top: auto;
   align-self: flex-start;

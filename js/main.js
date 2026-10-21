@@ -1,8 +1,9 @@
 // Получаем модальное окно по id.
 const orderDialog = document.getElementById('order-dialog');
 
-// Получаем все кнопки заказа в карточках товаров.
-const orderButtons = document.querySelectorAll('.product-card__button');
+// Получаем все кнопки, которые открывают форму заявки
+// (в карточках товаров и на странице товара). У них есть атрибут data-product.
+const orderButtons = document.querySelectorAll('[data-product]');
 
 // Получаем кнопку закрытия модального окна.
 const closeDialogButton = document.getElementById('close-order-dialog');
