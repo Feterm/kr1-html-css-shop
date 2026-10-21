@@ -289,9 +289,10 @@ a:focus-visible {
   display: block;
   width: 100%;
   aspect-ratio: 1 / 1;
-  object-fit: cover;
-  object-position: center 25%;
+  object-fit: contain;
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
+  background-color: var(--color-white);
 }
 
 .product-card__title {
@@ -403,9 +404,14 @@ a:focus-visible {
 
 .product-details__image {
   display: block;
+  width: 100%;
   max-width: 100%;
   height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
+  background-color: var(--color-white);
 }
 
 .product-details__caption {
