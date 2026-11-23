@@ -378,3 +378,12 @@ main.wrap { padding-bottom: clamp(55px, 9vh, 110px); }
   .chapter-layout-steps .chapter-items { padding-left: 12px; }
   .chapter-layout-steps .chapter-items li::before { left: -18px; }
 }
+
+.hero, .company-hero { background-image: linear-gradient(90deg,#18191ce8,#18191c80 48%,transparent), image-set(url('/store-assets/responsive/hero-1280.webp') 1x, url('/store-assets/responsive/hero-1942.webp') 2x); }
+@media (max-width: 760px) {
+ .hero, .company-hero { background-image: linear-gradient(90deg,#18191cf2,#18191c88), url('/store-assets/responsive/hero-768.webp'); }
+}
+.product-summary { color: var(--muted); }
+
+.review-dots button { width: 28px; min-width: 28px; height: 32px; }
+.product-media img { aspect-ratio: 1.5; }

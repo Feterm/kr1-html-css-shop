@@ -108,8 +108,8 @@ export function Schedule({orders, onSlot}) {
   const [chosen,setChosen] = useState(dates[0]);
   return <section><div className="page-banner"><h1>График получения</h1><p>Выберите день и интервал самовывоза или доставки.</p></div>
     <section className="block panel schedule"><h2>Доступные интервалы</h2>
-      <div className="row" aria-label="Способ получения">{[['pickup','Самовывоз'],['delivery','Доставка']].map(([id,label]) => <button className="outline" aria-pressed={method===id} key={id} onClick={() => setMethod(id)}>{label}</button>)}</div>
-      <div className="schedule-days" aria-label="Дни недели">{dates.map(date => <button className="outline" aria-pressed={chosen===date} key={date} onClick={() => setChosen(date)}><CalendarDays size={17}/>{dateLabel(date)}</button>)}</div>
+      <div className="row" role="group" aria-label="Способ получения">{[['pickup','Самовывоз'],['delivery','Доставка']].map(([id,label]) => <button className="outline" aria-pressed={method===id} key={id} onClick={() => setMethod(id)}>{label}</button>)}</div>
+      <div className="schedule-days" role="group" aria-label="Дни недели">{dates.map(date => <button className="outline" aria-pressed={chosen===date} key={date} onClick={() => setChosen(date)}><CalendarDays size={17}/>{dateLabel(date)}</button>)}</div>
       <div className="slots">{slots.map(slot => {
         const remaining = isPastSlot(chosen,slot) ? 0 : timeLeft(orders,method,chosen,slot);
         return <article className="panel" key={slot}><b>{slot}</b><small>{remaining ? 'Свободно: ' + remaining : 'Недоступно'}</small><button className="primary" disabled={!remaining} onClick={() => onSlot(method,chosen,slot)}>Выбрать</button></article>;
@@ -160,7 +160,7 @@ function ReviewCarousel({reviews}) {
     <div className="review-carousel-intro"><span className="eyebrow">ОБРАТНАЯ СВЯЗЬ</span><h2>Отзывы покупателей</h2><p>О товарах, самовывозе и услугах магазина.</p></div>
     <div className="panel review-stage">
       <div className="review-slide" key={index} aria-live="polite" aria-atomic="true">
-        <span className="rating" aria-label={'Оценка ' + active.stars + ' из 5'}>{'★'.repeat(active.stars)}{'☆'.repeat(5-active.stars)}</span>
+        <span className="rating" role="img" aria-label={'Оценка ' + active.stars + ' из 5'}>{'★'.repeat(active.stars)}{'☆'.repeat(5-active.stars)}</span>
         {active.topic && <h3>{active.topic}</h3>}
         <blockquote>{active.body}</blockquote><small>{active.name}</small>
       </div>

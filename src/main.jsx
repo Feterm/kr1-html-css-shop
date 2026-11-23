@@ -5,7 +5,9 @@ import { categories, products, money, matches, normalize } from './data';
 import { About, address, Contacts, ExtraHome, LocalAccount, RequestDialog, ReviewStats, Schedule, Services, SiteFooter, StoreClock, dayKey, isPastSlot, services, slots, timeLeft } from './StoreExtras';
 import { AccountTools, CatalogCategories, ComparisonGuide, DeliveryGuide, FavoritesCollections, MaterialCalculator, ProductGuide } from './ShoppingLayouts';
 import { RouteChapters } from './RouteChapters';
+import { createProductSummary, getProductStatus } from './product-functions';
 import './style.css';
+import './practice-console';
 
 const categoryIcons = [Drill, Boxes, Hammer, HardHat, PaintRoller, Cable];
 const sections = {home:'Главная', catalog:'Каталог', schedule:'График получения', services:'Услуги', about:'О магазине', contacts:'Контакты', favorites:'Избранное', compare:'Сравнение', account:'Личный кабинет', cart:'Корзина', checkout:'Оформление заказа'};
@@ -27,11 +29,16 @@ function useStored(key, initial) {
 }
 
 function ProductImage({ product }) {
-  if (product.photo) return <img src={asset(product.photo)} alt={product.name} loading="lazy" />;
-  return <div className="product-photo" role="img" aria-label={product.name}><span className={'tile-' + product.id}/></div>;
+  return <img src={asset('responsive/product-' + product.id + '-480.webp')}
+    srcSet={asset('responsive/product-' + product.id + '-240.webp') + ' 240w, ' +
+      asset('responsive/product-' + product.id + '-480.webp') + ' 480w'}
+    sizes="(max-width: 420px) 45vw, (max-width: 760px) 48vw, (max-width: 1000px) 30vw, 280px"
+    width="480" height="480" alt={product.name} loading="lazy" />;
 }
 
 function App() {
+  const [serverCalculation, setServerCalculation] = useState(null);
+  const [calculationError, setCalculationError] = useState('');
   const [page, setPage] = useState(route);
   const [menuOpen, setMenuOpen] = useState(false);
   const [dark, setDark] = useStored('dark', false);
@@ -115,6 +122,32 @@ function App() {
     const sold = orders.reduce((sum, order) => sum + order.items.reduce((n, item) => n + (item.id === product.id ? item.quantity : 0), 0), 0);
     return Math.max(0, product.stock - sold);
   }
+  const remainingForActive = activeProduct ? stock(activeProduct) : 0;
+  useEffect(() => {
+    if (!activeProduct || !import.meta.env.VITE_API_URL) return;
+    const controller = new AbortController();
+    setCalculationError('');
+    fetch(import.meta.env.VITE_API_URL.replace(/\/$/, '') + '/calculate', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      signal: controller.signal,
+      body: JSON.stringify({
+        name: activeProduct.name,
+        price: activeProduct.oldPrice || activeProduct.price,
+        discountPercent: activeProduct.discountPercent,
+        stock: remainingForActive,
+        isAvailable: activeProduct.isAvailable,
+      }),
+    }).then(async response => {
+      if (!response.ok) throw new Error('Calculation failed');
+      const data = await response.json();
+      if (typeof data.summary !== 'string') throw new Error('Invalid response');
+      if (!controller.signal.aborted) setServerCalculation({id: activeProduct.id, stock: remainingForActive, summary: data.summary});
+    }).catch(error => {
+      if (error.name !== 'AbortError') setCalculationError('Расчёт временно недоступен.');
+    });
+    return () => controller.abort();
+  }, [activeProduct, remainingForActive]);
   const cartItems = Object.entries(cart).flatMap(([id, quantity]) => {
     const product = byId(id);
     return product && quantity > 0 ? [{product, quantity}] : [];
@@ -263,7 +296,7 @@ function App() {
         <a className="product-title" href={'#product/' + product.id}>{product.name}</a>
         <small>{product.spec}</small>
         <div className="price">{money(product.price)} {product.oldPrice > 0 && <del>{money(product.oldPrice)}</del>}</div>
-        <span className={'stock ' + (remaining ? '' : 'soldout')}>{remaining ? 'В наличии: ' + remaining + ' шт.' : 'Нет в наличии'}</span>
+        <span className={'stock ' + (remaining ? '' : 'soldout')}>{getProductStatus(product, remaining)}{remaining > 0 && ': ' + remaining + ' шт.'}</span>
         <div className="card-actions"><button className="primary" disabled={!remaining} onClick={() => add(product)}><ShoppingCart size={17}/> В корзину</button><button className={'outline ' + (comparison.includes(product.id) ? 'selected' : '')} aria-label={'Сравнить: ' + product.name} aria-pressed={comparison.includes(product.id)} onClick={() => toggleCompare(product)}><GitCompareArrows size={18}/></button></div>
         {section === 'catalog' && <button className="text-button" disabled={!remaining} onClick={() => openRequest(product,'product')}>Быстрый резерв</button>}
       </div>
@@ -278,7 +311,7 @@ function App() {
     <div className="utility"><div className="wrap utility-inner"><span><MapPin size={14}/> Москва</span><StoreClock/><a href="#contacts">Доставка и самовывоз</a><a href="#contacts" className="utility-right">Контакты магазина</a></div></div>
     <header>
       <div className="wrap bar">
-        <a className="brand" href="#home" aria-label="СтройБаза, главная"><span className="brand-icon"><Hammer size={23}/></span><span>СТРОЙ<span>БАЗА</span><small>СТРОИТЕЛЬНЫЙ МАГАЗИН</small></span></a>
+        <a className="brand" href="#home"><span className="brand-icon"><Hammer size={23}/></span><span>СТРОЙ<span>БАЗА</span><small>СТРОИТЕЛЬНЫЙ МАГАЗИН</small></span></a>
         <button className="catalog-button primary" onClick={() => openCatalog()}><Menu size={19}/> Каталог</button>
         <button className="search-launch" onClick={() => searchDialog.current.showModal()}><Search size={20}/><span>Поиск по товарам и сайту</span><span className="search-key">Найти</span></button>
         <div className="header-actions">
@@ -328,7 +361,7 @@ function App() {
       </div></section>}
       {activeProduct && <section key={activeProduct.id}><div className="detail">
         <div className="detail-photo"><ProductImage product={activeProduct}/></div>
-        <div><span className="eyebrow">{activeProduct.category}</span><h1>{activeProduct.name}</h1><p>{activeProduct.description}</p><p className="price">{money(activeProduct.price)}</p><p className="stock">{stock(activeProduct)} шт. в наличии</p>
+        <div><span className="eyebrow">{activeProduct.category}</span><h1>{activeProduct.name}</h1><p>{activeProduct.description}</p><p className="product-summary">{serverCalculation?.id === activeProduct.id && serverCalculation.stock === remainingForActive ? serverCalculation.summary : createProductSummary(activeProduct, remainingForActive)}</p><p className="price">{money(activeProduct.price)}</p>{calculationError && <p role="status">{calculationError}</p>}<p className="stock">{stock(activeProduct)} шт. в наличии</p>
           <div className="row"><button className="primary" onClick={() => add(activeProduct)} disabled={!stock(activeProduct)}><ShoppingCart size={19}/> В корзину</button><button className="outline" aria-pressed={favorites.includes(activeProduct.id)} onClick={() => toggleFavorite(activeProduct)}><Heart size={19}/> Избранное</button><button className="outline" aria-pressed={comparison.includes(activeProduct.id)} onClick={() => toggleCompare(activeProduct)}><GitCompareArrows size={19}/> Сравнить</button></div>
           <button className="text-button quick-detail" disabled={!stock(activeProduct)} onClick={() => openRequest(activeProduct,'product')}>Быстро забронировать для самовывоза</button><h2>Характеристики</h2><dl className="specs"><dt>Категория</dt><dd>{activeProduct.category}</dd><dt>Параметры</dt><dd>{activeProduct.spec}</dd><dt>Артикул</dt><dd>СБ-{String(activeProduct.id).padStart(4,'0')}</dd></dl></div>
       </div><div className="panel block reviews"><h2>Отзывы о товаре</h2><p>Оценка в каталоге: {activeProduct.rating} / 5</p><ReviewStats entries={reviews[activeProduct.id] || []}/>

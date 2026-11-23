@@ -1,3 +1,4 @@
+import { formatPrice } from './product-functions';
 export const categories = ['Инструменты', 'Стройматериалы', 'Крепёж', 'Спецодежда', 'Отделка', 'Электрика'];
 export const products = [
   [1, 'Дрель-шуруповёрт 18 В', 6490, 7990, 18, 4.9, '18 В · 2 аккумулятора', 'Двухскоростной инструмент для сверления и установки крепежа. Кейс и зарядное устройство в комплекте.'],
@@ -11,7 +12,10 @@ export const products = [
   [9, 'Отвёртка крестовая PH2', 300, 0, 34, 4.7, 'PH2 · 150 мм', 'Крестовая отвёртка с удобной рукоятью для повседневных работ.', 'product-05.jpg', 0],
   [10, 'Лом-гвоздодёр стальной', 800, 0, 0, 4.7, '600 мм · сталь', 'Для демонтажа досок и извлечения гвоздей.', 'product-10.jpg', 0],
 ].map(([id, name, price, oldPrice, stock, rating, spec, description, photo, category]) => ({
-  id, name, price, oldPrice, stock, rating, spec, description, photo, category: categories[category ?? id - 1],
+  id, name, price, oldPrice, stock, rating, spec, description, photo,
+  isAvailable: stock > 0,
+  discountPercent: oldPrice > price ? (oldPrice - price) / oldPrice * 100 : 0,
+  category: categories[category ?? id - 1],
 }));
 
 export const faqs = [
@@ -19,7 +23,7 @@ export const faqs = [
   ['Как рассчитывается доставка?', 'Доставка стоит 490 ₽ и бесплатна при сумме товаров от 10 000 ₽.'],
   ['Где найти остаток товара?', 'Остаток указан в каталоге и на странице товара. После оформления он обновляется в этом браузере.'],
 ];
-export const money = value => new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB', maximumFractionDigits: 0 }).format(value);
+export const money = formatPrice;
 export const normalize = text => text.toLowerCase().replaceAll('ё', 'е').trim();
 export const matches = (product, query) => normalize(query).split(/\s+/).every(word =>
   normalize([product.name, product.category, product.spec, product.description].join(' ')).includes(word));
